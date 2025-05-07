@@ -1,0 +1,296 @@
+* {
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #2c2c2c url('images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    color: white;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.menu-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Fully center */
+    max-width: 550px;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+
+.menu-container.hidden {
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction when hidden */
+    transform: translate(-50%, -60%); /* Optional: move slightly up when hiding */
+}
+
+#settings-screen.hidden {
+    transform: translate(-50%, -40%); /* Optional: come from a slightly different position */
+}
+
+
+.logo-area {
+    /*
+      If 'top' on .menu-container moves the logo too much or too little
+      relative to buttons, you can also add a negative margin-top here
+      or adjust margin-bottom.
+    */
+    margin-bottom: 40px; /* Original: 50px, adjust if logo needs more/less space from buttons */
+    width: 100%;
+}
+
+.logo-text {
+    font-size: 5em;
+    color: #24128a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow:
+        -2px -2px 0 #000, 2px -2px 0 #000,
+        -2px 2px 0 #000, 2px 2px 0 #000,
+        1px 1px 0 #000, 2px 2px 0 #000,
+        3px 3px 0 #000, 4px 4px 0 #000,
+        5px 5px 0 #000, 6px 6px 8px rgba(0,0,0,0.5),
+        -1px -1px 5px #fff, 1px 1px 5px #000;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.main-interaction-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /*
+      If adjusting .menu-container 'top' makes buttons too high,
+      increase this margin-top to push them back down to their ideal spot.
+    */
+    margin-top: 0px; /* START WITH 0. If buttons are too high after moving logo, INCREASE this. */
+    margin-bottom: 50px; /* Original: 60px */
+}
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.1s ease-out;
+    position: relative;
+    padding: 10px 20px; /* General padding, can be overridden */
+}
+
+.btn-play {
+  background-color: #FFFFFF;
+  color: #111111;
+  font-size: 2em;
+  padding: 20px 80px;
+  margin-bottom: 33px;
+  box-shadow:
+    /* The "thickness" or "extruded" part */
+    0 8px 0 #b0b0b0,
+    /* The cast shadow on the "surface" */
+    0 12px 18px rgba(0,0,0,0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.1s ease-out, transform 0.1s ease-in-out; /* Added transform to transition */
+}
+
+.btn-play:hover {
+  background-color: #f5f5f5; /* Optional: slight color change on hover */
+  transform: translateY(2px); /* Move SLIGHTLY DOWN on hover */
+  box-shadow:
+    /* "Thickness" shadow reduces, similar to active but less intense */
+    0 5px 0 #b0b0b0,
+    /* Cast shadow also becomes smaller/tighter */
+    0 7px 10px rgba(0,0,0,0.35);
+}
+
+.btn-play:active {
+  background-color: #e0e0e0;
+  transform: translateY(4px); /* Push down FURTHER on active click */
+  box-shadow:
+    /* "Thickness" greatly reduced */
+    0 3px 0 #b0b0b0,
+    /* Smaller cast shadow */
+    0 5px 8px rgba(0,0,0,0.30);
+}
+
+
+.map-selection {
+    font-size: 1.2em;
+}
+
+.map-selection select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+    min-width: 200px; /* Set width to fit your layout */
+}
+
+
+.btn-settings { /* This is the button that opens settings */
+  margin-top: 33px;
+  background-color: #FFFFFF;
+  color: #111111;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.1s ease-out, transform 0.1s ease-in-out;
+
+  /* Keep the current size and padding of .btn-settings */
+  font-size: 1.2em;
+  padding: 14px 55px;
+
+  /* Adjust the box-shadow to fit the smaller size */
+  box-shadow:
+    /* Adjust the "thickness" shadow */
+    0 4px 0 #b0b0b0,
+    /* Adjust the cast shadow */
+    0 6px 10px rgba(0,0,0,0.4);
+}
+
+.btn-settings:hover {
+  background-color: #f5f5f5; /* Match the hover background of .btn-play */
+  transform: translateY(1px); /* Adjust the hover translation for the smaller button */
+  box-shadow:
+    /* Adjust the "thickness" shadow on hover */
+    0 2px 0 #b0b0b0,
+    /* Adjust the cast shadow on hover */
+    0 4px 6px rgba(0,0,0,0.35);
+}
+
+.btn-settings:active {
+  background-color: #e0e0e0; /* Match the active background of .btn-play */
+  transform: translateY(2px); /* Adjust the active translation for the smaller button */
+  box-shadow:
+    /* Adjust the "thickness" shadow on active */
+    0 1px 0 #b0b0b0,
+    /* Adjust the cast shadow on active */
+    0 2px 3px rgba(0,0,0,0.30);
+}
+
+
+
+/* Styles for the Settings Screen */
+#settings-screen {
+    /* Initially hidden, JS will remove .hidden class */
+    /* Uses .menu-container for base absolute positioning and max-width */
+    background-color: rgba(30, 30, 30, 0.95); /* Slightly different background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.settings-title {
+    font-size: 2.5em;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.settings-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between setting items */
+    margin-bottom: 30px;
+    width: 80%;
+    max-width: 400px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+}
+
+.setting-item label {
+    margin-right: 10px;
+    color: #ddd;
+}
+
+.setting-item select,
+.setting-item input[type="range"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #fff;
+    flex-grow: 1; /* Allows input to take available space */
+    min-width: 150px; /* Ensure select/range has enough width */
+}
+.setting-item input[type="range"] {
+    padding: 0; /* Range input often needs specific styling */
+}
+
+
+.btn-back {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 40px;
+    font-size: 1.2em;
+    box-shadow: 0 5px 0 #4a4a4a, 0 6px 8px rgba(0,0,0,0.3);
+}
+.btn-back:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #4a4a4a, 0 8px 10px rgba(0,0,0,0.35);
+}
+.btn-back:active {
+    background-color: #545b62;
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #4a4a4a, 0 3px 5px rgba(0,0,0,0.3);
+}
+
+.btn-control-config {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    width: 100%; /* Make it full width within its setting-item */
+}
+.btn-control-config:hover{
+    background-color: #0056b3;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 2.5em;
+  }
+
+  .btn-play,
+  .btn-settings {
+    font-size: 1.5em;
+    padding: 16px 40px;
+  }
+
+  .settings-title {
+    font-size: 2em;
+  }
+
+  .settings-options {
+    width: 100%;
+  }
+}
