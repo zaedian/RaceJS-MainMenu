@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaceJS Main Menu</title>
+    <link rel="stylesheet" href="styles.css">
+	<script src="scripts/MainMenu.js"></script>
+    </head>
+<body>
+    <div id="main-menu" class="menu-container">
+        <div class="logo-area">
+            <h1 class="logo-text">RaceJS</h1>
+        </div>
+
+        <div class="main-interaction-area">
+            <button href="racejs" class="btn btn-play">Play</button>
+			    <div class="map-selection">
+        <select id="map-select">
+            <option value="TestMap">TestMap</option>
+        </select>
+    </div>
+            <button id="settings-btn" class="btn btn-settings">Settings</button>
+        </div>
+    </div>
+
+    <div id="settings-screen" class="menu-container screen hidden">
+        <h2 class="settings-title">Settings</h2>
+        <div class="settings-options">
+            <div class="setting-item">
+                <label for="graphics-slider">Graphics Detail:</label>
+                <select id="graphics-select" name="graphics">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="ultra" selected>Ultra</option>
+                </select>
+            </div>
+			<div class="setting-item">
+                <label for="resolution">Resolution:</label>
+                <select id="resolution-select" name="resolution">
+				<option value="480p">640x480</option>
+				<option value="720p">1280x720</option>
+				<option value="900p">1600x900</option>
+				<option value="1080p" selected>1920x1080</option>
+				<option value="1440p">2560x1440</option>
+				<option value="1600p">2560x1600</option>
+				<option value="UWHD">2560x1080 (Ultrawide)</option>
+				<option value="UWQHD">3440x1440 (Ultrawide)</option>
+				<option value="4K">3840x2160 (4K)</option>>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="sound-volume">Sound Volume:</label>
+                <input type="range" id="sound-volume" name="sound-volume" min="0" max="100" value="75">
+                <span id="sound-value">75%</span>
+            </div>
+            <div class="setting-item">
+                <label for="shadows">Shadows:</label>
+                <select id="shadows-select" name="shadows">
+                    <option value="off">Off</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high" selected>High</option>
+                </select>
+            </div>
+			<div class="setting-item">
+				<label for="fog">Fog:</label>
+				<select id="fog-select" name="fog">
+					<option value="off">Off</option>
+					<option value="on" selected>On</option>
+				</select>
+            </div>
+             <div class="setting-item">
+                <button class="btn btn-control-config">Configure Controls</button>
+            </div>
+        </div>
+        <button id="back-to-main-btn" class="btn btn-back">Back</button>
+    </div>
+</body>
+</html>
